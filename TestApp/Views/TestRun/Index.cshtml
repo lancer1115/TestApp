@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TestApp.Models.TestRun>
+
+@{
+    ViewBag.Title = "Test Runs";
+}
+
+<h2>Test Runs</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Test Run Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Run Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.TestPlan.Name, "Test Plan Name")*@
+            Test Plan Name
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RunDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestPlan.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TestRunID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TestRunID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TestRunID })
+        </td>
+    </tr>
+}
+
+</table>

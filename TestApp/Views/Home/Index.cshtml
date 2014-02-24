@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Test Management Application</h1>
+    <p class="lead">The Test Management Application is used to store information regarding how testing is to be done as well as to plan testing activities.</p>
+    <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Test Runs</h2>
+        <p>
+            Run over each test run and mark as passed, failed or skipped. Also includes area to keep a record of the actual test result. Perform single or multiple test runs on any test suite.
+        </p>
+        <p><a class="btn btn-default" href="/TestRun">View Test Runs &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Test Plans</h2>
+        <p>Group test runs together. Record date, description, features tested, features not tested, approach, pass criteria, fail criteria, suspension criteria, resumption criteria, deliverables, responsibilities, schedule, risks.</p>
+        <p><a class="btn btn-default" href="/TestPlan">View Test Plans &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Test Suites</h2>
+        <p>Group test plans together.</p>
+        <p><a class="btn btn-default" href="/TestSuite">View Test Suites &raquo;</a></p>
+    </div>
+</div>

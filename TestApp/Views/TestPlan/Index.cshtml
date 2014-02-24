@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TestApp.Models.TestPlan>
+
+@{
+    ViewBag.Title = "Test Plans";
+}
+
+<h2>Test Plans</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Test Plan Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Create Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.TestSuite.Name)*@
+            Test Suite Name
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestSuite.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TestPlanID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TestPlanID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TestPlanID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,153 @@
+﻿@model TestApp.Models.TestPlan
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Test Plan</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreateDate, "Create Date", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreateDate)
+                @Html.ValidationMessageFor(model => model.CreateDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestSuiteID, "Test Suite ID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TestSuiteID", String.Empty)
+                @Html.ValidationMessageFor(model => model.TestSuiteID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FeaturesTested, "Features Tested", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.FeaturesTested, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.FeaturesTested)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FeaturesNotTested, "Features Not Tested", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.FeaturesNotTested, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.FeaturesNotTested)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Approach, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Approach, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.Approach)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PassCriteria, "Pass Criteria", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.PassCriteria, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.PassCriteria)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FailCriteria, "Fail Criteria", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.FailCriteria, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.FailCriteria)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SuspensionCriteria, "Suspension Criteria", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.SuspensionCriteria, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.SuspensionCriteria)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ResumptionCriteria, "Resumption Criteria", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.ResumptionCriteria, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.ResumptionCriteria)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Deliverables, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Deliverables, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.Deliverables)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Responsibilities, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Responsibilities, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.Responsibilities)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Schedule, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Schedule, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.Schedule)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Risks, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Risks, new { @rows = 15, @cols = 40 })
+                @Html.ValidationMessageFor(model => model.Risks)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

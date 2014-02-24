@@ -1,0 +1,84 @@
+﻿@model TestApp.Models.TestRun
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Test Run</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.TestPlan.Name)*@
+            Test Plan Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestPlan.Name)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.RunDate)*@
+            Run Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RunDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Description, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.TestSteps)*@
+            Test Steps
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.TestSteps, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.ExpectedResults)*@
+            Expected Results
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.ExpectedResults, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

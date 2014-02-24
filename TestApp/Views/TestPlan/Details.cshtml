@@ -1,0 +1,146 @@
+﻿@model TestApp.Models.TestPlan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Test Plan</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.CreateDate)*@
+            Create Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.TestSuite.Name)*@
+            Test Suite Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestSuite.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Description, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.FeaturesTested)*@
+            Features Tested
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.FeaturesTested, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.FeaturesNotTested)*@
+            Features Not Tested
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.FeaturesNotTested, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Approach)
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Approach, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.PassCriteria)*@
+            Pass Criteria
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.PassCriteria, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.FailCriteria)*@
+            Fail Criteria
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.FailCriteria, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.SuspensionCriteria)*@
+            Suspension Criteria
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.SuspensionCriteria, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.ResumptionCriteria)*@
+            Resumption Criteria
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.ResumptionCriteria, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deliverables)
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Deliverables, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Responsibilities)
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Responsibilities, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Schedule)
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Schedule, new { @rows = 15, @cols = 40 })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Risks)
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Risks, new { @rows = 15, @cols = 40 })
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TestPlanID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

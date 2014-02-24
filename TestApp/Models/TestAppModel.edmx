@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TestApplicationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TestPlan">
+          <Key>
+            <PropertyRef Name="TestPlanID" />
+          </Key>
+          <Property Name="TestPlanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="TestSuiteID" Type="int" />
+          <Property Name="FeaturesTested" Type="nvarchar" MaxLength="1000" />
+          <Property Name="FeaturesNotTested" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Approach" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PassCriteria" Type="nvarchar" MaxLength="1000" />
+          <Property Name="FailCriteria" Type="nvarchar" MaxLength="1000" />
+          <Property Name="SuspensionCriteria" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ResumptionCriteria" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Deliverables" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Responsibilities" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Schedule" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Risks" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="TestRun">
+          <Key>
+            <PropertyRef Name="TestRunID" />
+          </Key>
+          <Property Name="TestRunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="TestPlanID" Type="int" />
+          <Property Name="RunDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TestSteps" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ExpectedResults" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TestSuite">
+          <Key>
+            <PropertyRef Name="TestSuiteID" />
+          </Key>
+          <Property Name="TestSuiteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_TestPlan_dbo_TestSuite_TestSuiteID">
+          <End Role="TestSuite" Type="Self.TestSuite" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TestPlan" Type="Self.TestPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestSuite">
+              <PropertyRef Name="TestSuiteID" />
+            </Principal>
+            <Dependent Role="TestPlan">
+              <PropertyRef Name="TestSuiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TestRun_dbo_TestPlan_TestPlanID">
+          <End Role="TestPlan" Type="Self.TestPlan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TestRun" Type="Self.TestRun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestPlan">
+              <PropertyRef Name="TestPlanID" />
+            </Principal>
+            <Dependent Role="TestRun">
+              <PropertyRef Name="TestPlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestApplicationModelStoreContainer">
+          <EntitySet Name="TestPlan" EntityType="Self.TestPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestRun" EntityType="Self.TestRun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestSuite" EntityType="Self.TestSuite" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_TestPlan_dbo_TestSuite_TestSuiteID" Association="Self.FK_dbo_TestPlan_dbo_TestSuite_TestSuiteID">
+            <End Role="TestSuite" EntitySet="TestSuite" />
+            <End Role="TestPlan" EntitySet="TestPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TestRun_dbo_TestPlan_TestPlanID" Association="Self.FK_dbo_TestRun_dbo_TestPlan_TestPlanID">
+            <End Role="TestPlan" EntitySet="TestPlan" />
+            <End Role="TestRun" EntitySet="TestRun" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestApplicationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TestPlan">
+          <Key>
+            <PropertyRef Name="TestPlanID" />
+          </Key>
+          <Property Name="TestPlanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="TestSuiteID" Type="Int32" />
+          <Property Name="FeaturesTested" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FeaturesNotTested" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Approach" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="PassCriteria" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FailCriteria" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="SuspensionCriteria" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ResumptionCriteria" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Deliverables" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Responsibilities" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Schedule" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Risks" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TestSuite" Relationship="Self.FK_dbo_TestPlan_dbo_TestSuite_TestSuiteID" FromRole="TestPlan" ToRole="TestSuite" />
+          <NavigationProperty Name="TestRuns" Relationship="Self.FK_dbo_TestRun_dbo_TestPlan_TestPlanID" FromRole="TestPlan" ToRole="TestRun" />
+        </EntityType>
+        <EntityType Name="TestRun">
+          <Key>
+            <PropertyRef Name="TestRunID" />
+          </Key>
+          <Property Name="TestRunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TestPlanID" Type="Int32" />
+          <Property Name="RunDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TestSteps" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ExpectedResults" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TestPlan" Relationship="Self.FK_dbo_TestRun_dbo_TestPlan_TestPlanID" FromRole="TestRun" ToRole="TestPlan" />
+        </EntityType>
+        <EntityType Name="TestSuite">
+          <Key>
+            <PropertyRef Name="TestSuiteID" />
+          </Key>
+          <Property Name="TestSuiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TestPlans" Relationship="Self.FK_dbo_TestPlan_dbo_TestSuite_TestSuiteID" FromRole="TestSuite" ToRole="TestPlan" />
+        </EntityType>
+        <Association Name="FK_dbo_TestPlan_dbo_TestSuite_TestSuiteID">
+          <End Role="TestSuite" Type="Self.TestSuite" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TestPlan" Type="Self.TestPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestSuite">
+              <PropertyRef Name="TestSuiteID" />
+            </Principal>
+            <Dependent Role="TestPlan">
+              <PropertyRef Name="TestSuiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TestRun_dbo_TestPlan_TestPlanID">
+          <End Role="TestPlan" Type="Self.TestPlan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TestRun" Type="Self.TestRun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestPlan">
+              <PropertyRef Name="TestPlanID" />
+            </Principal>
+            <Dependent Role="TestRun">
+              <PropertyRef Name="TestPlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestApplicationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TestPlans" EntityType="Self.TestPlan" />
+          <EntitySet Name="TestRuns" EntityType="Self.TestRun" />
+          <EntitySet Name="TestSuites" EntityType="Self.TestSuite" />
+          <AssociationSet Name="FK_dbo_TestPlan_dbo_TestSuite_TestSuiteID" Association="Self.FK_dbo_TestPlan_dbo_TestSuite_TestSuiteID">
+            <End Role="TestSuite" EntitySet="TestSuites" />
+            <End Role="TestPlan" EntitySet="TestPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TestRun_dbo_TestPlan_TestPlanID" Association="Self.FK_dbo_TestRun_dbo_TestPlan_TestPlanID">
+            <End Role="TestPlan" EntitySet="TestPlans" />
+            <End Role="TestRun" EntitySet="TestRuns" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestApplicationModelStoreContainer" CdmEntityContainer="TestApplicationEntities">
+          <EntitySetMapping Name="TestPlans">
+            <EntityTypeMapping TypeName="TestApplicationModel.TestPlan">
+              <MappingFragment StoreEntitySet="TestPlan">
+                <ScalarProperty Name="TestPlanID" ColumnName="TestPlanID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="TestSuiteID" ColumnName="TestSuiteID" />
+                <ScalarProperty Name="FeaturesTested" ColumnName="FeaturesTested" />
+                <ScalarProperty Name="FeaturesNotTested" ColumnName="FeaturesNotTested" />
+                <ScalarProperty Name="Approach" ColumnName="Approach" />
+                <ScalarProperty Name="PassCriteria" ColumnName="PassCriteria" />
+                <ScalarProperty Name="FailCriteria" ColumnName="FailCriteria" />
+                <ScalarProperty Name="SuspensionCriteria" ColumnName="SuspensionCriteria" />
+                <ScalarProperty Name="ResumptionCriteria" ColumnName="ResumptionCriteria" />
+                <ScalarProperty Name="Deliverables" ColumnName="Deliverables" />
+                <ScalarProperty Name="Responsibilities" ColumnName="Responsibilities" />
+                <ScalarProperty Name="Schedule" ColumnName="Schedule" />
+                <ScalarProperty Name="Risks" ColumnName="Risks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestRuns">
+            <EntityTypeMapping TypeName="TestApplicationModel.TestRun">
+              <MappingFragment StoreEntitySet="TestRun">
+                <ScalarProperty Name="TestRunID" ColumnName="TestRunID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TestPlanID" ColumnName="TestPlanID" />
+                <ScalarProperty Name="RunDate" ColumnName="RunDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TestSteps" ColumnName="TestSteps" />
+                <ScalarProperty Name="ExpectedResults" ColumnName="ExpectedResults" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestSuites">
+            <EntityTypeMapping TypeName="TestApplicationModel.TestSuite">
+              <MappingFragment StoreEntitySet="TestSuite">
+                <ScalarProperty Name="TestSuiteID" ColumnName="TestSuiteID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
